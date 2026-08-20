@@ -124,9 +124,9 @@ export default function Navbar({ logoSrc }: NavbarProps) {
         </div>
       </div>
 
-      {/* Shop Subcategory Bar (Toggles on clicking Shop) */}
+      {/* Shop Subcategory Bar (Toggles on clicking Shop, desktop only) */}
       {shopSubmenuOpen && (
-        <div className="w-full bg-white border-t border-black px-6 md:px-12 py-3.5 flex items-center gap-6 sm:gap-8 md:gap-10 overflow-x-auto text-xs sm:text-sm font-normal text-neutral-900 transition-all">
+        <div className="hidden md:flex w-full bg-white border-t border-black px-6 md:px-12 py-3.5 items-center gap-6 sm:gap-8 md:gap-10 overflow-x-auto text-xs sm:text-sm font-normal text-neutral-900 transition-all">
           {shopCategories.map((cat) => (
             <Link
               key={cat.label}
