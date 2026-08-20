@@ -31,15 +31,15 @@ export default function Navbar({ logoSrc }: NavbarProps) {
           </Link>
         </nav>
 
-        {/* Center Logo */}
-        <div className="flex-1 md:flex-initial flex items-center justify-center">
+        {/* Center / Left Logo */}
+        <div className="flex-1 md:flex-initial flex items-center justify-start md:justify-center">
           <Link href="/" className="inline-block py-2">
             {logoSrc && !hasLogoError ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={logoSrc}
                 alt="LaNouvelle"
-                className="h-8 md:h-10 w-auto object-contain"
+                className="h-7 sm:h-8 md:h-10 w-auto object-contain"
                 onError={() => setHasLogoError(true)}
               />
             ) : (

@@ -25,9 +25,9 @@ export default function HeroSection({
 
   return (
     <section className="w-full bg-white border-b border-black">
-      <div className="grid grid-cols-1 md:grid-cols-2 min-h-[550px] lg:min-h-[calc(100vh-80px)] divide-y md:divide-y-0 md:divide-x divide-black">
+      <div className="flex flex-col md:grid md:grid-cols-2 min-h-[calc(100dvh-80px)] md:min-h-[calc(100vh-80px)] divide-y md:divide-y-0 md:divide-x divide-black">
         {/* Left Column: Typography & Action */}
-        <div className="flex flex-col justify-end px-5 sm:px-6 md:px-8 lg:px-10 pb-5 sm:pb-6 md:pb-8 pt-12 md:pt-16 order-2 md:order-1">
+        <div className="flex flex-col justify-end px-5 sm:px-6 md:px-8 lg:px-10 pb-6 sm:pb-8 md:pb-8 pt-8 sm:pt-12 md:pt-16 order-2 md:order-1 shrink-0 md:shrink">
           <div className="max-w-md">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-neutral-950">
               {title}
@@ -35,7 +35,7 @@ export default function HeroSection({
             <p className="mt-4 sm:mt-5 text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-sm">
               {description}
             </p>
-            <div className="mt-7 sm:mt-9">
+            <div className="mt-6 sm:mt-8 md:mt-9">
               <Link
                 href={buttonLink}
                 className="inline-flex items-center justify-center min-w-[140px] px-8 py-2.5 border border-black rounded-full text-xs sm:text-sm font-normal text-neutral-950 hover:bg-neutral-950 hover:text-white transition-colors duration-200"
@@ -47,7 +47,7 @@ export default function HeroSection({
         </div>
 
         {/* Right Column: Hero Visual Slot */}
-        <div className="relative w-full min-h-[380px] sm:min-h-[460px] md:min-h-[550px] lg:min-h-[calc(100vh-80px)] bg-neutral-100 overflow-hidden order-1 md:order-2 flex items-center justify-center">
+        <div className="relative w-full flex-1 min-h-[340px] sm:min-h-[400px] md:min-h-full bg-neutral-100 overflow-hidden order-1 md:order-2 flex items-center justify-center">
           {imageSrc && !imageError ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img

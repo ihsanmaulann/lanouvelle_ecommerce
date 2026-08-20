@@ -21,7 +21,7 @@ export default function FeaturedSeries({
   return (
     <section className="w-full bg-white border-b border-black">
       <div className="flex flex-col lg:flex-row">
-        {/* Left Column: Category Info & CTA */}
+        {/* Left / Top Column: Category Info & CTA */}
         <div className="w-full lg:w-[28%] xl:w-[25%] p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-start border-b lg:border-b-0 lg:border-r border-black shrink-0">
           <div>
             <h2 className="text-4xl sm:text-5xl font-normal tracking-tight text-neutral-950">
@@ -41,7 +41,7 @@ export default function FeaturedSeries({
           </div>
         </div>
 
-        {/* Right Products Grid */}
+        {/* Products Grid */}
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-black">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
