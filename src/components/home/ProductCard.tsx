@@ -87,17 +87,17 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Bottom Status / Action */}
       <div className="mt-8 pt-2">
-        {product.href ? (
+        {product.status === "Coming Soon" ? (
+          <span className="text-xs sm:text-sm font-normal text-neutral-950 block">
+            Coming Soon
+          </span>
+        ) : (
           <a
-            href={product.href}
-            className="text-xs sm:text-sm font-normal text-neutral-950 hover:opacity-60 transition-opacity inline-block cursor-pointer"
+            href={product.href || "/shop"}
+            className="inline-flex items-center justify-center px-6 py-2 border border-black rounded-full text-xs sm:text-sm font-normal text-neutral-950 hover:bg-neutral-950 hover:text-white transition-colors duration-200"
           >
             {product.status || "Shop Now"}
           </a>
-        ) : (
-          <span className="text-xs sm:text-sm font-normal text-neutral-950 block">
-            {product.status || "Coming Soon"}
-          </span>
         )}
       </div>
     </div>

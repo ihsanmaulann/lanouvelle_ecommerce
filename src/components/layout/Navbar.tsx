@@ -10,19 +10,30 @@ interface NavbarProps {
 
 export default function Navbar({ logoSrc }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [shopSubmenuOpen, setShopSubmenuOpen] = useState(false);
   const [hasLogoError, setHasLogoError] = useState(false);
+
+  const shopCategories = [
+    { label: "Racing Series", href: "/shop/racing-series" },
+    { label: "Anime Series", href: "/shop/anime-series" },
+    { label: "Casual", href: "/shop/casual" },
+    { label: "Coming Soon", href: "/shop/coming-soon" },
+  ];
 
   return (
     <header className="w-full bg-white border-b border-black sticky top-0 z-50">
       <div className="w-full px-6 md:px-12 h-20 flex items-center justify-between">
         {/* Left Navigation */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-normal text-neutral-900">
-          <Link
-            href="/shop"
-            className="hover:opacity-70 transition-opacity tracking-normal"
+          <button
+            type="button"
+            onClick={() => setShopSubmenuOpen(!shopSubmenuOpen)}
+            className={`hover:opacity-70 transition-opacity tracking-normal cursor-pointer flex items-center gap-1 ${
+              shopSubmenuOpen ? "font-medium" : ""
+            }`}
           >
             Shop
-          </Link>
+          </button>
           <Link
             href="/about"
             className="hover:opacity-70 transition-opacity tracking-normal"
@@ -113,16 +124,48 @@ export default function Navbar({ logoSrc }: NavbarProps) {
         </div>
       </div>
 
+      {/* Shop Subcategory Bar (Toggles on clicking Shop) */}
+      {shopSubmenuOpen && (
+        <div className="w-full bg-white border-t border-black px-6 md:px-12 py-3.5 flex items-center gap-6 sm:gap-8 md:gap-10 overflow-x-auto text-xs sm:text-sm font-normal text-neutral-900 transition-all">
+          {shopCategories.map((cat) => (
+            <Link
+              key={cat.label}
+              href={cat.href}
+              className="whitespace-nowrap hover:opacity-60 transition-opacity"
+            >
+              {cat.label}
+            </Link>
+          ))}
+        </div>
+      )}
+
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-neutral-200 bg-white px-6 py-5 flex flex-col gap-4">
-          <Link
-            href="/shop"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-base text-neutral-900 font-normal hover:opacity-70"
-          >
-            Shop
-          </Link>
+          <div>
+            <button
+              type="button"
+              onClick={() => setShopSubmenuOpen(!shopSubmenuOpen)}
+              className="text-base text-neutral-900 font-normal hover:opacity-70 flex items-center justify-between w-full"
+            >
+              <span>Shop</span>
+              <span className="text-xs">{shopSubmenuOpen ? "▲" : "▼"}</span>
+            </button>
+            {shopSubmenuOpen && (
+              <div className="mt-3 pl-4 flex flex-col gap-2.5 border-l border-neutral-200">
+                {shopCategories.map((cat) => (
+                  <Link
+                    key={cat.label}
+                    href={cat.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-sm text-neutral-600 hover:text-neutral-950"
+                  >
+                    {cat.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
           <Link
             href="/about"
             onClick={() => setMobileMenuOpen(false)}

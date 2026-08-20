@@ -32,7 +32,11 @@ export default function Home() {
         />
 
         {/* Part 3: Product Catalog Grid */}
-        <ProductCatalog products={catalogProducts} />
+        <ProductCatalog
+          title="All Products"
+          subtitle="Product Terlaris"
+          products={catalogProducts}
+        />
 
         {/* Part 4: Everyday Feature Section */}
         <EverydaySection
