@@ -19,7 +19,7 @@ export default function Home() {
           description="Lorem ipsum dolor sit amet consectetur. Urna luctus consectetur imperdiet blandit."
           buttonText="Shop"
           buttonLink="/shop"
-          imageSrc="/images/hero-banner.jpg"
+          imageSrc="/images/hero.jpg"
         />
 
         {/* Part 2: New Racing Series Section */}
@@ -40,7 +40,7 @@ export default function Home() {
           description="Designed for comfort and made to fit your everyday style. Discover pieces that are easy to wear and made to stand out."
           buttonText="Explore Collection"
           buttonLink="/collections/everyday"
-          imageSrc="/images/everyday-banner.jpg"
+          imageSrc="/images/hero.jpg"
         />
       </main>
 

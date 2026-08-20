@@ -17,7 +17,7 @@ export default function EverydaySection({
   description = "Designed for comfort and made to fit your everyday style. Discover pieces that are easy to wear and made to stand out.",
   buttonText = "Explore Collection",
   buttonLink = "/collections/everyday",
-  imageSrc = "/images/everyday-banner.jpg",
+  imageSrc = "/images/hero.jpg",
   imageAlt = "Made for Your Everyday Collection",
 }: EverydaySectionProps) {
   const [imageError, setImageError] = useState(false);

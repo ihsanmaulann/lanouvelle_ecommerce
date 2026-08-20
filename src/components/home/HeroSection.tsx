@@ -18,7 +18,7 @@ export default function HeroSection({
   description = "Lorem ipsum dolor sit amet consectetur. Urna luctus consectetur imperdiet blandit.",
   buttonText = "Shop",
   buttonLink = "/shop",
-  imageSrc = "/images/hero-banner.jpg",
+  imageSrc = "/images/hero.jpg",
   imageAlt = "LaNouvelle Hero Banner",
 }: HeroSectionProps) {
   const [imageError, setImageError] = useState(false);
