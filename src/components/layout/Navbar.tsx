@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+import SearchModal from "./SearchModal";
+
 interface NavbarProps {
   logoSrc?: string;
 }
@@ -11,6 +13,7 @@ interface NavbarProps {
 export default function Navbar({ logoSrc }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [shopSubmenuOpen, setShopSubmenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [hasLogoError, setHasLogoError] = useState(false);
 
   const shopCategories = [
@@ -21,76 +24,78 @@ export default function Navbar({ logoSrc }: NavbarProps) {
   ];
 
   return (
-    <header className="w-full bg-white border-b border-black sticky top-0 z-50">
-      <div className="w-full px-6 md:px-12 h-20 flex items-center justify-between">
-        {/* Left Navigation */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-normal text-neutral-900">
-          <button
-            type="button"
-            onClick={() => setShopSubmenuOpen(!shopSubmenuOpen)}
-            className={`hover:opacity-70 transition-opacity tracking-normal cursor-pointer flex items-center gap-1 ${
-              shopSubmenuOpen ? "font-medium" : ""
-            }`}
-          >
-            Shop
-          </button>
-          <Link
-            href="/about"
-            className="hover:opacity-70 transition-opacity tracking-normal"
-          >
-            About
-          </Link>
-        </nav>
-
-        {/* Center / Left Logo */}
-        <div className="flex-1 md:flex-initial flex items-center justify-start md:justify-center">
-          <Link href="/" className="inline-block py-2">
-            {logoSrc && !hasLogoError ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={logoSrc}
-                alt="LaNouvelle"
-                className="h-7 sm:h-8 md:h-10 w-auto object-contain"
-                onError={() => setHasLogoError(true)}
-              />
-            ) : (
-              /* Handwritten / Signature Logo Style matching the design */
-              <span className="font-serif italic font-semibold text-2xl md:text-3xl tracking-tight text-neutral-950 select-none">
-                LaNouvelle
-              </span>
-            )}
-          </Link>
-        </div>
-
-        {/* Right Navigation */}
-        <div className="flex items-center gap-6 md:gap-8">
-          <Link
-            href="/login"
-            className="hidden md:inline-block text-sm font-normal text-neutral-900 hover:opacity-70 transition-opacity"
-          >
-            Login
-          </Link>
-
-          {/* Search Button */}
-          <button
-            type="button"
-            aria-label="Search"
-            className="p-1 text-neutral-900 hover:opacity-70 transition-opacity focus:outline-none cursor-pointer"
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
+    <>
+      <header className="w-full bg-white border-b border-black sticky top-0 z-50">
+        <div className="w-full px-6 md:px-12 h-20 flex items-center justify-between">
+          {/* Left Navigation */}
+          <nav className="hidden md:flex items-center gap-8 text-sm font-normal text-neutral-900">
+            <button
+              type="button"
+              onClick={() => setShopSubmenuOpen(!shopSubmenuOpen)}
+              className={`hover:opacity-70 transition-opacity tracking-normal cursor-pointer flex items-center gap-1 ${
+                shopSubmenuOpen ? "font-medium" : ""
+              }`}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              />
-            </svg>
-          </button>
+              Shop
+            </button>
+            <Link
+              href="/about"
+              className="hover:opacity-70 transition-opacity tracking-normal"
+            >
+              About
+            </Link>
+          </nav>
+
+          {/* Center / Left Logo */}
+          <div className="flex-1 md:flex-initial flex items-center justify-start md:justify-center">
+            <Link href="/" className="inline-block py-2">
+              {logoSrc && !hasLogoError ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={logoSrc}
+                  alt="LaNouvelle"
+                  className="h-7 sm:h-8 md:h-10 w-auto object-contain"
+                  onError={() => setHasLogoError(true)}
+                />
+              ) : (
+                /* Handwritten / Signature Logo Style matching the design */
+                <span className="font-serif italic font-semibold text-2xl md:text-3xl tracking-tight text-neutral-950 select-none">
+                  LaNouvelle
+                </span>
+              )}
+            </Link>
+          </div>
+
+          {/* Right Navigation */}
+          <div className="flex items-center gap-6 md:gap-8">
+            <Link
+              href="/login"
+              className="hidden md:inline-block text-sm font-normal text-neutral-900 hover:opacity-70 transition-opacity"
+            >
+              Login
+            </Link>
+
+            {/* Search Button */}
+            <button
+              type="button"
+              aria-label="Search"
+              onClick={() => setIsSearchOpen(true)}
+              className="p-1 text-neutral-900 hover:opacity-70 transition-opacity focus:outline-none cursor-pointer"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                />
+              </svg>
+            </button>
 
           {/* Mobile Menu Toggle Button */}
           <button
@@ -183,5 +188,12 @@ export default function Navbar({ logoSrc }: NavbarProps) {
         </div>
       )}
     </header>
+
+    {/* Search Modal Overlay */}
+    <SearchModal
+      isOpen={isSearchOpen}
+      onClose={() => setIsSearchOpen(false)}
+    />
+  </>
   );
 }
