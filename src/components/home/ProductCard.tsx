@@ -14,7 +14,10 @@ export default function ProductCard({ product }: ProductCardProps) {
     <div className="flex flex-col justify-between p-6 sm:p-8 md:p-10 bg-white h-full">
       <div>
         {/* Product Image Container */}
-        <div className="relative w-full aspect-square bg-neutral-100 rounded-sm overflow-hidden flex items-center justify-center mb-6">
+        <a
+          href={product.href || "/products/verstappen-kick"}
+          className="relative w-full aspect-square bg-neutral-100 rounded-sm overflow-hidden flex items-center justify-center mb-6 block cursor-pointer group"
+        >
           {/* Badge */}
           {product.badge && (
             <div className="absolute top-4 left-4 z-10">
@@ -30,7 +33,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <img
               src={product.imageSrc}
               alt={product.name}
-              className="w-full h-full object-contain p-4"
+              className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
               onError={() => setImageError(true)}
             />
           ) : (
@@ -57,11 +60,16 @@ export default function ProductCard({ product }: ProductCardProps) {
               </span>
             </div>
           )}
-        </div>
+        </a>
 
         {/* Info Row: Title & Price */}
         <div className="flex items-center justify-between gap-2 text-sm sm:text-base font-normal text-neutral-950">
-          <span>{product.name}</span>
+          <a
+            href={product.href || "/products/verstappen-kick"}
+            className="hover:opacity-70 transition-opacity"
+          >
+            {product.name}
+          </a>
           <span className="shrink-0">{product.price}</span>
         </div>
 
